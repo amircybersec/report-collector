@@ -44,7 +44,18 @@ After making the POST reqyest, you can see that a row gets added to your Google 
 
 ### Notes
 
-#### Pros and Cons:
+#### Pros: 
+- The Apps Script setup process is very straightforward and does not require any technical knowledge using the provided script here. Those who are interested in spinning up their private report collector can do it in a matter minutes. 
+
+- Using this service is also free (subject to usage limitations explained below)
+
+- Since Apps scripts relies on Google Infrasctuctre, I would assume it will be able to handle burst requests, though I have not verified the speed.
+
+#### Cons:
+
+- The API calls are subject to quotas and limitations on number of daily API calls. This depends on the type of account (personal/workspace). More details on this can be found [here](https://developers.google.com/apps-script/guides/services/quotas).
+
+- Google services may not be accessible in certain countries (such as China) and requests to the script.google.com URL probably get blocked there. As a work around, the URL can be placed behind a reachable CDN or proxy. Since the job of report collector is to collecting network error logs and blocking reports, report collector service itself must be more resilient and not easily blocked. In future solutions, I aim to enhance resiliency of report collectors against blocking.
 
 #### Security:
 ```
