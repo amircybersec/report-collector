@@ -33,27 +33,20 @@ Screenshots below demonestrate the process visually:
 Now, when you make a POST request to the provided URL with JSON data in the body, the data will be appended to the Google Sheet:
 
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"resolver":"8.8.8.8:53","proto":"tcp","time":"2023-10-05T04:34:12Z","duration_ms":5003,"error":{"op":"dial","posix_error":"ETIMEDOUT","msg":"i/o timeout"}}' YOUR_WEB_APP_URL
+curl -X POST -H "Content-Type: application/json" -d '{"resolver":"8.8.8.8:53","proto":"tcp","time":"2023-10-05T04:34:12Z","duration_ms":5003,"error":{"op":"dial","posix_error":"ETIMEDOUT","msg":"i/o timeout"}}' YOUR_WEB_APP_URL?apiToken=YOUR_SECRET_API_TOKEN
 ```
-In the above request, I am using a sample JSON report from Outline connectivity tester. However, the payload can be any JSON.  
+In the above request, I am using a sample JSON report from Outline connectivity tester. However, the payload can be any JSON object.  Make sure to replace `YOUR_WEB_APP_URL` with the URL you got when you deployed the web app. If you have defined an API token in your script, make sure you also include it in the URL (`?apiToken=YOUR_SECRET_API_TOKEN`) 
 
-Make sure to replace `YOUR_WEB_APP_URL` with the URL you got when you deployed the web app.
+After making the POST reqyest, you can see that a row gets added to your Google Spreadsheet. The header values (first row) are extracted from JSON keys. Additionally, the Apps script flatens the JSON object and dynamically adds new keys into the header.   
 
 ![spreadsheet](https://github.com/amircybersec/report-collector/assets/117060873/eea88180-8fda-4d07-b3c8-7c42013d31a9)
 
 
-### Security
+### Notes
 
+#### Pros and Cons:
+
+#### Security:
 ```
 var API_TOKEN = "YOUR_SECRET_API_TOKEN";  // Replace with your desired token
-
-function doPost(e) {
-...
-  // Check for the correct API token
-  if (!e.parameter.apiToken || e.parameter.apiToken !== API_TOKEN) {
-    return ContentService.createTextOutput(JSON.stringify({
-      'result': 'error',
-      'message': 'Invalid API Token'
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
 ```
