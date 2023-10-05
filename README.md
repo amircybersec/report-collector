@@ -15,7 +15,7 @@ In the first method, I show how to use Google Spreadsheets with App scripts to c
 
 1. Create a new Google Sheet where you want to store the incoming data.
 2. Click on Extensions > Apps Script to open the script editor.
-3. Delete any existing code in the editor, and paste in the following script:
+3. Delete any existing code in the editor, and paste in the content of script located at `app_script/script.js'
 4. Save your script.
 5. Now, to publish your script as a web app, click on Publish > Deploy as web app....
 6. In the Who has access to the app: dropdown, select Anyone. This means that anyone can make a POST request to your web app.
@@ -23,13 +23,19 @@ In the first method, I show how to use Google Spreadsheets with App scripts to c
 
 Copy the URL provided as it will be the endpoint for the POST request.
 
+![web-app](https://github.com/amircybersec/report-collector/assets/117060873/ef65a56b-3496-4fb4-80ac-7213e8dc98ef)
+
+
 Now, when you make a POST request to the provided URL with JSON data in the body, the data will be appended to the Google Sheet:
 
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"column1": "value1", "column2": "value2"}' YOUR_WEB_APP_URL
+curl -X POST -H "Content-Type: application/json" -d '{"resolver":"8.8.8.8:53","proto":"tcp","time":"2023-10-05T04:34:12Z","duration_ms":5003,"error":{"op":"dial","posix_error":"ETIMEDOUT","msg":"i/o timeout"}}' YOUR_WEB_APP_URL
 ```
+In the above request, I am using a sample JSON report from Outline connectivity tester. However, the payload can be any JSON.  
 
 Make sure to replace `YOUR_WEB_APP_URL` with the URL you got when you deployed the web app.
+
+
 
 ### Security
 
