@@ -9,7 +9,7 @@ I am going to propose several mechanisms for report collecting and compare pros/
 - Distributed and resilient
 - Scalable
 
- ## Methods 1
+ ## Methods 1: Google Apps Scripts
 
 In the first method, I show how to use Google Spreadsheets with App scripts to collect reports. I will first walk you through the setup proccess and then discuss teh pros and cons of this approach. 
 
@@ -23,6 +23,10 @@ In the first method, I show how to use Google Spreadsheets with App scripts to c
 
 Copy the URL provided as it will be the endpoint for the POST request.
 
+Screenshots below demonestrate the process visually:
+
+![deploy](https://github.com/amircybersec/report-collector/assets/117060873/674f79bf-865d-48ed-9e1a-a8c7cda634c3)
+
 ![web-app](https://github.com/amircybersec/report-collector/assets/117060873/ef65a56b-3496-4fb4-80ac-7213e8dc98ef)
 
 
@@ -35,6 +39,7 @@ In the above request, I am using a sample JSON report from Outline connectivity 
 
 Make sure to replace `YOUR_WEB_APP_URL` with the URL you got when you deployed the web app.
 
+![spreadsheet](https://github.com/amircybersec/report-collector/assets/117060873/eea88180-8fda-4d07-b3c8-7c42013d31a9)
 
 
 ### Security
