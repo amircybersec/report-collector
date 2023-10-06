@@ -25,6 +25,8 @@ Copy the URL provided as it will be the endpoint for the POST request.
 
 Screenshots below demonestrate the process visually:
 
+![extension](https://github.com/amircybersec/report-collector/assets/117060873/33265e66-f5d0-42d3-8471-f5a651ff40cb)
+
 ![deploy](https://github.com/amircybersec/report-collector/assets/117060873/674f79bf-865d-48ed-9e1a-a8c7cda634c3)
 
 ![web-app](https://github.com/amircybersec/report-collector/assets/117060873/ef65a56b-3496-4fb4-80ac-7213e8dc98ef)
