@@ -17,7 +17,7 @@ In the first method, I show how to use Google Spreadsheets with App scripts to c
 2. Click on Extensions > Apps Script to open the script editor.
 3. Delete any existing code in the editor, and paste in the content of script located at `app_script/script.js'
 4. Save your script.
-5. Now, to publish your script as a web app, click on Publish > Deploy as web app....
+5. Now, to publish your script as a web app, click on `Publish > Deploy` as web app....
 6. In the Who has access to the app: dropdown, select Anyone. This means that anyone can make a POST request to your web app.
 7. Click on Deploy.
 
