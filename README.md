@@ -13,9 +13,9 @@ I am going to propose several mechanisms for report collecting and compare pros/
 
 In the first method, I show how to use Google Spreadsheets with App scripts to collect reports. I will first walk you through the setup proccess and then discuss teh pros and cons of this approach. 
 
-1. Create a new Google Sheet where you want to store the incoming data.
-2. Click on Extensions > Apps Script to open the script editor.
-3. Delete any existing code in the editor, and paste in the content of script located at `app_script/script.js'
+1. Create a new [Google Sheet](https://docs.google.com/spreadsheets) where you want to store the incoming data.
+2. Click on `Extensions > Apps Script` to open the script editor.
+3. Delete any existing code in the editor, and paste in the content of script located at `app_script/script.js`
 4. Save your script.
 5. Now, to publish your script as a web app, click on `Publish > Deploy` as web app....
 6. In the Who has access to the app: dropdown, select Anyone. This means that anyone can make a POST request to your web app.
