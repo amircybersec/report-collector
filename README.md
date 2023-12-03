@@ -1,10 +1,14 @@
 # Report Collector
 
-This repo contains code and artifacts to setup a report collector system for collecting and storing Network Error Logs sent in JSON format. I will also demonestrate a end-to-end report collection using Outline connectivity tester client, however, the proposed methods can be used with any system that wants to log and report network errors in JSON format (such as . Other formats must be converted to JSON on the client side. 
+This repo contains code and artifacts to setup a report collector system for collecting and storing Network Error Logs sent in JSON format. I will also demonestrate a end-to-end report collection using [Outline connectivity tester](https://github.com/Jigsaw-Code/outline-sdk/tree/main/x/examples/outline-connectivity-app) client app:
+
+<img src="https://github.com/Jigsaw-Code/outline-sdk/assets/117060873/38b56eb0-d284-48cd-89bd-b1d98686c3e2" alt="drawing" width="200"/>
+
+The proposed methods can be used with any system that wants to log and report network errors in JSON format. Other formats must be converted to JSON on the client side. 
 
 I am going to propose several mechanisms for report collecting and compare pros/cons of each approach. A resilient report collecting system must satisfy as many as following properties:
 
-- Easy to setup
+- Easy to setup (low/no code)
 - No/light client dependencies 
 - Distributed and resilient
 - Scalable
