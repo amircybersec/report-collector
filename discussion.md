@@ -28,10 +28,9 @@ It must also be resilient, easy to set up, and use as I will discuss below in mo
 
 3. Consumption of reports; Analysis and visualization
 
-The last step is to analyze and make sense of the report to gain insight into the underlying root causes and find a work-around for example if a blocking is taking place. Consumption of the log data requires that the report data adheres to some known format (either user defined or standard format). This way information can be easily extracted from the data and analyzed. 
+The last step, but perhaps the most important piece is to analyze and make sense of the report to gain insight into the underlying root causes and find a work-around for example if a blocking is taking place. Consumption of the log data requires that the report data adheres to some known format (either user defined or standard format). This way target information can be easily extracted from the report data and analyzed. Enforcing a universal format is however challening and not practical. A good format must offer flexibility to define new fields (inject new information) while including more rigid sections that capture protocol agnostic or generic information. 
 
-
-## Target audience and UX
+## Target audience and experience
 
 This system can be used by the following target groups:
 
