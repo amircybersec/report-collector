@@ -35,7 +35,7 @@ The last step is to analyze and make sense of the report to gain insight into th
 
 This system can be used by the following target groups:
 
-### Developers & users of VPN and networking apps:
+### 1. Developers & users of VPN and networking apps:
 Developers can incorporate this functionality into their apps to offer a facility to collect logs and send them to a remote connector. 
 
 The developers may also allow their app users to specify a custom collector address to which logs are submitted to. The address can be incorporated into the server access key as a parameter as well. 
@@ -46,14 +46,14 @@ Also, I implemented a [report package](https://github.com/Jigsaw-Code/outline-sd
 
 
 
-### Service providers (service managers)
+### 2. Service providers (service managers)
 Network error logging from client vantage points can assist service providers in troubleshooting and addressing potential blocking issues and improve their service offering. In theory, they could use the reports to adaptively adjust the transport to bypass blocking. 
 
 Service providers may prefer to setup and utilize their own private collectors, and potentially setup a redirect to relay reports to a public after some post-processing to redact PID and other sensetive information.
 
 Depending on the client support, the address of the collector can be embedded into access key URL shared with the end-user.
 
-### Internet Freedom Community 
+### 3. Internet Freedom Community 
 The community at large can benefit from reports and analysis based on such reports and aggregate of results to gain insights into common blocking techniques and their impacts. 
 
 Public collectors can play an important role here. Private collectors could potentially opt-in to share their findings with a public collector. 
