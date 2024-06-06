@@ -27,8 +27,8 @@ function flattenJsonObject(jsonObj, parentKey = '', result = {}) {
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-  // // Uncomment if token based authentication is required.
-  // // Validate the API token provided in the request.
+  // Uncomment if token based authentication is required.
+  // Validate the API token provided in the request.
   // if (!e.parameter.apiToken || e.parameter.apiToken !== API_TOKEN) {
   //   return ContentService.createTextOutput(JSON.stringify({
   //     'result': 'error',
@@ -37,19 +37,39 @@ function doPost(e) {
   // }
 
   try {
-    // Parse the POST data and flatten the JSON structure.
+    // Parse the POST data.
     var jsonData = JSON.parse(e.postData.contents);
-    var flattenedData = flattenJsonObject(jsonData);
-    
+
+    // Extract the common fields.
+    var commonFields = {
+      'resolver': jsonData.resolver,
+      'proto': jsonData.proto,
+      'transport': jsonData.transport,
+      'endpoint.host': jsonData.result.endpoint.host,
+      'endpoint.port': jsonData.result.endpoint.port,
+      'clientIP': jsonData.clientIP,
+      'clientASN' : jsonData.clientASN,
+      'clientCountry': jsonData.clientCountry,
+      'clientAsOrg': jsonData.clientAsOrg
+    };
+
+    // Flatten each attempt and add the common fields.
+    var flattenedRows = jsonData.result.attempts.map(function (attempt) {
+      var flattenedAttempt = flattenJsonObject(attempt);
+      return Object.assign({}, commonFields, flattenedAttempt);
+    });
+
     // Fetch the header from the sheet, or set the initial header if the sheet is empty.
     var header = sheet.getLastRow() === 0 ? [] : sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
     var newColumns = [];
 
     // Check for new fields and add them to the header and the newColumns list.
-    for (var key in flattenedData) {
-      if (header.indexOf(key) === -1) {
-        header.push(key);
-        newColumns.push(key);
+    for (var row of flattenedRows) {
+      for (var key in row) {
+        if (header.indexOf(key) === -1) {
+          header.push(key);
+          newColumns.push(key);
+        }
       }
     }
 
@@ -62,19 +82,23 @@ function doPost(e) {
       }
     }
 
-    // Populate the new row data in the order of the header.
-    var row = [];
-    for (var i = 0; i < header.length; i++) {
-      row.push(flattenedData[header[i]] || "");
-    }
-    
-    // Append the new data row to the sheet.
-    sheet.appendRow(row);
-    
+    // Populate the new row data in the order of the header for each attempt.
+    var rows = flattenedRows.map(function (row) {
+      return header.map(function (key) {
+        return row[key] || "";
+      });
+    });
+
+    // Append the new data rows to the sheet.
+    sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, header.length).setValues(rows);
+
     // Return a success response.
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' })).setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     // If there's any error in the process, return an error response with the error message.
-    return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'message': error.toString() })).setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(JSON.stringify({
+      'result': 'error',
+      'message': error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
   }
 }
